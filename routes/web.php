@@ -2,4 +2,5 @@
 
 use Illuminate\Support\Facades\Route;
 
-Route::redirect('/', '/admin/reproduction');
+Route::redirect('/', '/admin/notes');
+Route::redirect('/admin/reproduction', '/admin/notes');

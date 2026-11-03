@@ -3,6 +3,7 @@
 namespace Database\Seeders;
 
 use App\Models\User;
+use App\Models\Note;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 
@@ -15,11 +16,13 @@ class DatabaseSeeder extends Seeder
      */
     public function run(): void
     {
-        // User::factory(10)->create();
+        User::query()->updateOrCreate(
+            ['email' => 'demo@example.com'],
+            ['name' => 'Demo User', 'password' => 'password', 'email_verified_at' => now()],
+        );
 
-        User::factory()->create([
-            'name' => 'Test User',
-            'email' => 'test@example.com',
-        ]);
+        Note::factory()->nullNotes()->create(['title' => 'Null notes (control)']);
+        Note::factory()->emptyParagraph()->create(['title' => 'Empty paragraph (reproduction)']);
+        Note::factory()->create(['title' => 'Delete this content and save']);
     }
 }

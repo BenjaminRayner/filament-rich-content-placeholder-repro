@@ -5,12 +5,17 @@ namespace App\Models;
 use Filament\Forms\Components\RichEditor\Models\Concerns\InteractsWithRichContent;
 use Filament\Forms\Components\RichEditor\Models\Contracts\HasRichContent;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Database\Factories\NoteFactory;
 
 class Note extends Model implements HasRichContent
 {
     use InteractsWithRichContent;
 
-    protected $fillable = ['notes'];
+    /** @use HasFactory<NoteFactory> */
+    use HasFactory;
+
+    protected $fillable = ['title', 'notes'];
 
     protected function casts(): array
     {
